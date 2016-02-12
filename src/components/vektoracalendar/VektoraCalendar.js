@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Icon = require('react-native-vector-icons/FontAwesome');
 var {
   StyleSheet,
   View,
@@ -213,7 +214,7 @@ var HeaderControls = React.createClass({
       <View style={styles.headerWrapper}>
         <View style={styles.monthSelector}>
           <TouchableOpacity onPress={this.getPrevious}>
-            <Text style={styles.prev}>Previous</Text>
+            <Icon name='arrow-left' size={25} style={styles.prev}/>
           </TouchableOpacity>
         </View>
         <View>
@@ -223,7 +224,7 @@ var HeaderControls = React.createClass({
         </View>
         <View style={styles.monthSelector}>
           <TouchableOpacity onPress={this.getNext}>
-            <Text style={styles.next}>Next</Text>
+            <Icon name='arrow-right' size={25} style={styles.next}/>
           </TouchableOpacity>
         </View>
 

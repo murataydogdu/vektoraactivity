@@ -1,12 +1,8 @@
-/**
- * Calendar Picker Component
- * By Stephani Alves - April 11, 2015
- */
 'use strict';
 
 module.exports = {
   WEEKDAYS: [
-    'Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'
+    'Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt',
   ],
   MONTHS: [
     'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz',

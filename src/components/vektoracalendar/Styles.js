@@ -7,7 +7,7 @@ var styles = StyleSheet.create({
   calendar: {
     height: 320,
     width: width,
-    marginTop: 10
+    marginTop: 25
   },
   dayWrapper: {
     width: width/7,
