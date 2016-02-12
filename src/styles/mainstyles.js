@@ -12,7 +12,7 @@ module.exports = StyleSheet.create({
   },
   header : {
     flex : 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems : 'center',
     marginTop : 25,
   },
@@ -21,7 +21,7 @@ module.exports = StyleSheet.create({
   },
   headerText : {
     marginTop : 9,
-    fontSize : 17,
+    fontSize : 13,
     fontWeight : 'bold'
   },
   headerImage : {

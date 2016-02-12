@@ -12,7 +12,8 @@ var {
   Text,
   Image,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  ActivityIndicatorIOS,
 } = React;
 
 //FIXME image source should be local for device (both ios and android)
@@ -25,6 +26,7 @@ module.exports = React.createClass({
     return({
       username : '',
       password : '',
+      animating : false,
       });
   },
   //FIXME explore what is the proper way to do it
@@ -36,8 +38,9 @@ module.exports = React.createClass({
     var headers = new Headers();
     headers.append("Authorization", "Basic " + base64.encode(this.state.username+":"+this.state.password));
 
-    var param = "DateSet?$filter=WorkDate eq datetime ";
-    var datetime = Moment().format();
+    var datetime = Moment().format('YYYY-MM-DDTHH:mm:ss');
+    var param = "DateSet?$filter=WorkDate eq datetime'"+datetime+"'";
+
 
     fetch(VSDURL+param+'&$format=json', {
         headers: headers
@@ -46,11 +49,39 @@ module.exports = React.createClass({
         return response.json()
       })
       .then(function(json){
-        console.log(json);
-      });
 
-    // console.log(Moment().format());
+        console.log(json.d.results);
+      });
+      this.setState({animating : false});
+
+    // console.log(Moment().format('YYYY-MM-DDTHH:mm:ss'));
     // console.log(this.state.password);
+  },
+  actIndicatShow : function(){
+    return(
+      <ActivityIndicatorIOS
+        animating={this.state.animating}
+        style={[styles.centering, {height: 80}]}
+        size="large"
+      />
+    );
+  },
+  userInputsShow : function(){
+   //FIXME this function returns all content for userInputs related
+  },
+  renderScene : function(route , navigator){
+      var Component = ROUTES[route.name];
+      return (<Component />);
+  },
+  xRender : function(){
+    return(
+        <Navigator
+          style={styles.container}
+          initialRoute={{name : 'auth'}}
+          renderScene={this.renderScene}
+          configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+        />
+    );
   },
   render : function(){
     return(
@@ -71,18 +102,16 @@ module.exports = React.createClass({
             placeholder={'SAP Kullanıcı adı'}
             autoCorrect={false}
             autoCapitalize={'none'}
-            onChangeText={(username) => this.setState({username})}
+            onChangeText={(username) => this.setState({username: username})}
             onFocus={this.scrolldown}
             value={this.state.username} />
-          <TextInput />
           <TextInput
             style={styles.usernametextinput}
             placeholder={'SAP Şifre'}
             password={true}
-            onChangeText={(password) => this.setState({password})}
+            onChangeText={(password) => this.setState({password: password})}
             onFocus={this.scrolldown}
             value={this.state.password} />
-          <TextInput />
           <View style={styles.loginButton}>
             <TouchableHighlight
               underlayColor='grey'

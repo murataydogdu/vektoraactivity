@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var Main = require('./src/main');
+var Router = require('./src/router');
 
 var {AppRegistry} =React;
 
-AppRegistry.registerComponent('vektoraactivity', () => Main);
+AppRegistry.registerComponent('vektoraactivity', () => Router);
